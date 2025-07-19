@@ -29,7 +29,7 @@ public class SignUp extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        System.out.println("OK");
+//        System.out.println("OK");
         
         Gson gson = new Gson();
         JsonObject user = gson.fromJson(request.getReader(), JsonObject.class);
@@ -55,7 +55,7 @@ public class SignUp extends HttpServlet {
             responseObject.addProperty("message", "The password must contains at least uppercase, lowercase,"
                     + " number, special charactor and to be minimum eight characters long!");
         } else {
-            //hibernate save
+            
             SessionFactory sf = HibernateUtil.getSessionFactory();
             Session s = sf.openSession();
             
@@ -66,6 +66,7 @@ public class SignUp extends HttpServlet {
             if (!criteria.list().isEmpty()){
                 responseObject.addProperty("message","User with this Email already exists!!");
             }else {
+            //hibernate save    
                 User u1 = new User();
                 u1.setFirst_name(firstName);
                 u1.setLast_name(lastName);
@@ -89,12 +90,13 @@ public class SignUp extends HttpServlet {
                     Mail.sendMail(email, "Book Bazaar - Verification", "<h1>"+verificationCode+"</h1>");
                 }
             }).start();
+            //send mail
             
             //session management
-//            HttpSession ses = request.getSession();
-//            ses.setAttribute("email", email);
-//            //session management
-//            
+            HttpSession ses = request.getSession();
+            ses.setAttribute("email", email);
+            //session management
+            
             //if the user data is clear to rngage the area will be true
             responseObject.addProperty("status", true);
             responseObject.addProperty("message", "Registration success. Please check your email for the verification code");
@@ -106,7 +108,6 @@ public class SignUp extends HttpServlet {
         } 
         
         String responseText = gson.toJson(responseObject);
-        
         response.setContentType("application/json");
         response.getWriter().write(responseText);
     }

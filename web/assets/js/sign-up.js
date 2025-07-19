@@ -23,10 +23,11 @@ async function signUp(){
             "SignUp",
     {
         method:"POST",
-        headers: {
+        body: userJson,
+        header: {
             "Content-Type": "application/json"
-        },
-        body: userJson
+        }
+        
     }
     );
     

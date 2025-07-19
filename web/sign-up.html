@@ -344,7 +344,8 @@
                         <h2 class="mb-4">Create Your Account</h2>
                         <p class="mb-4 text-muted">Fill in your details to get started</p>
                         <p class="text-danger" id="message"></p>
-                        <form id="signupForm">
+                        <form id="signupForm" method="POST" action="SignUp">
+
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="firstName" class="form-label">First Name</label>
@@ -367,12 +368,12 @@
                                 <div class="form-text">Use 8 or more characters with a mix of letters, numbers & symbols</div>
                             </div>
 
-                            <div class="mb-3 form-check">
+<!--                            <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="terms">
                                 <label class="form-check-label" for="terms">
                                     I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
                                 </label>
-                            </div>
+                            </div>-->
 
                             <div class="d-grid mb-4">
                                 <button onclick="signUp();" type="button" class="btn btn-primary btn-lg pulse-animation">Create Account</button>
