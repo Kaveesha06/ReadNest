@@ -10,10 +10,10 @@
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/read_nest?useSSL=false</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">Kaveesh3841k</property>  <!-- REPLACE YOUR MySQL PASSWORD HERE -->
+        <property name="hibernate.connection.password">Kaveesh3841k</property>
         <property name="hibernate.show_sql">true</property>
 
-        <!--<mapping class="hibernate.User" />-->
+        <mapping class="hibernate.User" />
 
     </session-factory>
     

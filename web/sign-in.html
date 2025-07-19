@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In to Your Account</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00b98e;
+            --primary-hover: #00a47a;
+            --light-gray: #f8f9fa;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container-custom {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .auth-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-in-out;
+            width: 100%;
+        }
+        
+        .auth-left {
+            background: linear-gradient(135deg, #00b98e, #007b5e);
+            padding: 40px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .auth-right {
+            padding: 40px;
+        }
+        
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .welcome-title {
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .welcome-subtitle {
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .form-control {
+            border-radius: 8px;
+            padding: 12px 15px;
+            border: 1px solid #e1e5eb;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(0, 185, 142, 0.15);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            border-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline-primary {
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .signin-top {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list i {
+            background: rgba(255, 255, 255, 0.2);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 25px 0;
+            color: #6c757d;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .divider::before {
+            margin-right: 15px;
+        }
+        
+        .divider::after {
+            margin-left: 15px;
+        }
+        
+        .social-login .btn {
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .auth-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .auth-actions a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .auth-actions a:hover {
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @media (max-width: 991px) {
+            .auth-left {
+                padding: 30px 20px;
+            }
+            
+            .auth-right {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .auth-container {
+                flex-direction: column;
+            }
+            
+            .auth-left, .auth-right {
+                padding: 25px;
+            }
+            
+            .signin-top {
+                position: static;
+                margin-bottom: 20px;
+                justify-content: flex-end;
+            }
+            
+            .auth-actions {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-custom">
+        <div class="signin-top">
+            <span class="text-muted">Not a member?</span>
+            <a href="sign-up.html" class="btn btn-outline-primary">Sign Up</a>
+        </div>
+        
+        <div class="row auth-container g-0">
+            <div class="col-lg-6 auth-left">
+                <div class="mb-5">
+                    <div class="logo">
+                        <i class="fas fa-book"></i> Book Bazaar
+                    </div>
+                    <h1 class="welcome-title">Welcome back!</h1>
+                    <p class="welcome-subtitle">Sign in to continue to your account and access your Works.</p>
+                    
+                    <ul class="feature-list">
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Track your project progress</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Access your team dashboard</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Secure 256-bit encrypted connection</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="mt-auto">
+                    <p class="mb-0">Need help? <a href="#" class="text-white fw-bold">Contact Support</a></p>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 auth-right">
+                <div class="form-container">
+                    <h2 class="mb-4">Sign In</h2>
+                    <p class="mb-4 text-muted">Enter your credentials to access your account</p>
+                    
+                    <form id="signinForm">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+                        </div>
+                        
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg pulse-animation">Sign In</button>
+                        </div>
+                        
+                        <div class="auth-actions">
+                            <a href="verify-account.html" class="verify-account">Verify your account</a>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+                    </form>
+                    
+                    <div class="divider">OR</div>
+                    
+                    <div class="social-login">
+                        <div class="d-grid gap-3">
+                            <button class="btn btn-light">
+                                <i class="fab fa-google me-2"></i> Continue with Google
+                            </button>
+                            <button class="btn btn-light">
+                                <i class="fab fa-apple me-2"></i> Continue with Apple
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 text-center">
+                        <p class="text-muted">By signing in, you agree to our <a href="#" class="text-primary">Terms</a> and <a href="#" class="text-primary">Privacy Policy</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Form submission handling
+        document.getElementById('signinForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple validation
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (!email.includes('@')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long');
+                return;
+            }
+            
+            // Here you would normally send the data to your server
+            alert(`Welcome back! Redirecting to your dashboard...`);
+            
+            // In a real app, you would redirect after successful login
+            // window.location.href = '/dashboard';
+        });
+    </script>
+</body>
+</html>
